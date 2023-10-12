@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# Criar Grupos
+sudo groupadd adm
+sudo groupadd ven
+sudo groupadd sec
+
+# Pastas e permissões
+sudo mkdir /publico
+sudo mkdir /adm
+sudo mkdir /ven
+sudo mkdir /sec
+sudo chmod 777 /publico  # Liberação para todos
+sudo chown :adm /adm     # ajuste de permissão grupo ADM
+sudo chmod 770 /adm      
+sudo chown :ven /ven     # ajuste de permissão grupo VEN
+sudo chmod 770 /ven      
+sudo chown :sec /sec     # ajuste de permissão grupo SEC
+sudo chmod 770 /sec      
+
+# criar usuários e adc em grupos
+sudo useradd -m -G adm carlos
+sudo useradd -m -G adm maria
+sudo useradd -m -G adm joao
+sudo useradd -m -G ven debora
+sudo useradd -m -G ven sebastiana
+sudo useradd -m -G ven roberto
+sudo useradd -m -G sec josefina
+sudo useradd -m -G sec amanda
+sudo useradd -m -G sec rogerio
+
+# senhas iniciais
+sudo passwd carlos
+sudo passwd maria
+sudo passwd joao
+sudo passwd debora
+sudo passwd sebastiana
+sudo passwd roberto
+sudo passwd josefina
+sudo passwd amanda
+sudo passwd rogerio
