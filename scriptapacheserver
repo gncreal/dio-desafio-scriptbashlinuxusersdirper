@@ -1,0 +1,30 @@
+#!/bin/bash
+
+sudo apt update
+sudo apt upgrade -y
+
+# instalar Apache2 e unzip
+sudo apt install -y apache2 unzip
+
+# download ref
+download_url="https://github.com/denilsonbonatti/linux-site-dio/archive/refs/heads/main.zip"
+temp_dir="/temp"
+apache_main_dir="/var/www/html"
+
+# criar pasta temp
+sudo mkdir -p "$temp_dir"
+
+# baixar
+wget "$download_url" -P "$temp_dir"
+
+# unzip
+unzip "$temp_dir/main.zip" -d "$temp_dir"
+
+# copia para diretório do apache
+sudo cp -r "$temp_dir/linux-site-dio-main/"* "$apache_main_dir"
+
+# ajustar permissões
+sudo chown -R www-data:www-data "$apache_main_dir"
+
+# remover .zip
+rm -rf "$temp_dir"
